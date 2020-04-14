@@ -4,8 +4,12 @@ metadata:
   name: application-pipeline
 spec:
   resources:
-    - name: git-source
-      type: git
+      inputs:
+      - name: git-source
+        resource: git
+      outputs:
+      - name: git-source
+        resource: git
   params:
     - name: pathToContext
       description: The path to the build context, used by Kaniko - within the workspace
@@ -32,6 +36,9 @@ spec:
         value: "$(params.imageTag)"
     resources:
       inputs:
+        - name: git-source
+          resource: git-source
+      outputs:
         - name: git-source
           resource: git-source
   - name: deploy-application
