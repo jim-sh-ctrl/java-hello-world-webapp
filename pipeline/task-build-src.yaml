@@ -21,6 +21,7 @@ spec:
   outputs:
     resources:
       - name: warfile
+        type: gcs
   steps:
     - name: list-src
       image: alpine
