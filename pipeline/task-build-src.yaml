@@ -38,7 +38,7 @@ spec:
       command:
         - /kaniko/executor
       args:
-        - "--dockerfile=$(inputs.params.pathToDockerfile)"
+        - "--dockerfile=$(inputs.resources.git-source.path)/Dockerfile"
         - "--destination=$(inputs.params.imageUrl):$(inputs.params.imageTag)"
         - "--context=$(inputs.resources.git-source.path)/$(inputs.params.pathToContext)/"
         - "--insecure"
