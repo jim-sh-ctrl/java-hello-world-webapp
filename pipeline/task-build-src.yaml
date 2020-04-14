@@ -5,7 +5,7 @@ metadata:
 spec:
   outputs:
     resources:
-    - name: workspace
+    - name: git-source
       type: git
   inputs:
     resources:
