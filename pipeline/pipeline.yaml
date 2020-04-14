@@ -51,4 +51,4 @@ spec:
     resources:
       inputs:
         - name: git-source
-          resource: git-sourcepipeline.yaml
+          resource: git-source
