@@ -18,6 +18,8 @@ spec:
         description: value should be like - us.icr.io/test_namespace/builtImageApp
       - name: imageTag
         description: Tag to apply to the built image
+  outputs:
+    name: war-file
   steps:
     - name: list-src
       image: alpine
@@ -33,22 +35,3 @@ spec:
         - -f
         - $(inputs.resources.git-source.path)
         - package
-    - name: copy-output
-      image: ubuntu
-      command:
-        - bash
-      args:
-        - -c
-        - cp $(inputs.resources.git-source.path)/target/*.war $(outputs.resources.git-source.path)
-    - name: build-and-push
-      image: gcr.io/kaniko-project/executor
-      command:
-        - /kaniko/executor
-      args:
-        - "--dockerfile=$(inputs.resources.git-source.path)/Dockerfile"
-        - "--destination=$(inputs.params.imageUrl):$(inputs.params.imageTag)"
-        - "--context=$(inputs.resources.git-source.path)/$(inputs.params.pathToContext)/"
-        - "--insecure"
-        - "--insecure-pull"
-        - "--skip-tls-verify"
-        - "--skip-tls-verify-pull"
