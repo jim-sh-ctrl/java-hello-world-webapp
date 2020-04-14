@@ -33,13 +33,6 @@ spec:
         - -f
         - $(inputs.resources.git-source.path)
         - package
-    - name: copy-output
-      image: ubuntu
-      command:
-        - bash
-      args:
-        - -c
-        - cp $(inputs.resources.git-source.path)/target/*.jar $(outputs.resources.git-source.path)
     - name: build-and-push
       image: gcr.io/kaniko-project/executor
       command:
