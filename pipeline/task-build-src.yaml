@@ -7,6 +7,9 @@ spec:
     resources:
       - name: git-source
         type: git
+  output:
+    resources:
+      - name: warfile
     params:
       - name: pathToContext
         description: The path to the build context, used by Kaniko - within the workspace
