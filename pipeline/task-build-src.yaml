@@ -3,6 +3,10 @@ kind: Task
 metadata:
   name: build-image-from-source
 spec:
+  outputs:
+    resources:
+      - name: warfile
+        type: gcs
   inputs:
     resources:
       - name: git-source
@@ -18,10 +22,6 @@ spec:
         description: value should be like - us.icr.io/test_namespace/builtImageApp
       - name: imageTag
         description: Tag to apply to the built image
-  outputs:
-    resources:
-      - name: warfile
-        type: gcs
   steps:
     - name: list-src
       image: alpine
