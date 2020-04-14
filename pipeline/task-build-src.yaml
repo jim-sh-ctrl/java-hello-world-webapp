@@ -5,8 +5,8 @@ metadata:
 spec:
   outputs:
     resources:
-      - name: warfile
-        type: gcs
+    - name: workspace
+      type: git
   inputs:
     resources:
       - name: git-source
