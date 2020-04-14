@@ -9,7 +9,7 @@ spec:
       type: git
   inputs:
     resources:
-      - name: git
+      - name: git-source
         type: git
     params:
       - name: pathToContext
