@@ -39,7 +39,7 @@ spec:
         - bash
       args:
         - -c
-        - cp $(inputs.resources.git-source.path)/target/*.jar $(outputs.resources.git-source.path)
+        - cp $(inputs.resources.git-source.path)/target/*.war $(outputs.resources.git-source.path)
     - name: build-and-push
       image: gcr.io/kaniko-project/executor
       command:
