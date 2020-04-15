@@ -35,4 +35,12 @@ spec:
         - -f
         - $(inputs.resources.git-source.path)
         - package
-        - -Dmaven.repo.local=$(workspaces.maven-repo.path)
+      mountPath: "/workspace/git-source/target"
+        name: mypd
+  volumes:
+    - name: mypd
+      persistentVolumeClaim:
+        claimName: maven-repo-pvc     
+        
+        
+        
