@@ -3,6 +3,8 @@ kind: Pipeline
 metadata:
   name: application-pipeline
 spec:
+  workspaces:
+  - name: local-maven-repo
   resources:
     - name: git-source
       type: git
@@ -34,6 +36,9 @@ spec:
       inputs:
         - name: git-source
           resource: git-source
+    workspaces:
+    - name: maven-repo
+      workspace: local-maven-repo
   - name: deploy-application
     taskRef:
       name: deploy-application
