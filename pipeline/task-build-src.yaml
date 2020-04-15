@@ -3,14 +3,12 @@ kind: Task
 metadata:
   name: build-image-from-source
 spec:
-  outputs:
-    resources:
-    - name: git-source
-      type: git
   inputs:
     resources:
       - name: git-source
         type: git
+    workspaces:
+      - name: local-maven-repo
     params:
       - name: pathToContext
         description: The path to the build context, used by Kaniko - within the workspace
@@ -28,7 +26,7 @@ spec:
       command:
         - "ls"
       args:
-        - "$(inputs.resources.git-source.path)"
+        - "$(inputs.resources.git-source.path)" 
     - name: build-with-maven
       image: maven:latest
       command:
@@ -37,3 +35,4 @@ spec:
         - -f
         - $(inputs.resources.git-source.path)
         - package
+        - -Dmaven.repo.local=$(workspaces.maven-repo.path)
