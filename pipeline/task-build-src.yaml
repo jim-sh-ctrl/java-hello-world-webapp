@@ -3,6 +3,8 @@ kind: Task
 metadata:
   name: build-image-from-source
 spec:
+  workspaces:
+  - name: maven-repo
   inputs:
     resources:
       - name: git-source
@@ -33,15 +35,4 @@ spec:
         - -f
         - $(inputs.resources.git-source.path)
         - package
-    - name: build-and-push
-      image: gcr.io/kaniko-project/executor
-      command:
-        - /kaniko/executor
-      args:
-        - "--dockerfile=$(inputs.resources.git-source.path)/Dockerfile"
-        - "--destination=$(inputs.params.imageUrl):$(inputs.params.imageTag)"
-        - "--context=$(inputs.resources.git-source.path)/$(inputs.params.pathToContext)/"
-        - "--insecure"
-        - "--insecure-pull"
-        - "--skip-tls-verify"
-        - "--skip-tls-verify-pull"
+        - -Dmaven.repo.local=$(workspaces.maven-repo.path)
