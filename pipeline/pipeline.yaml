@@ -5,7 +5,7 @@ metadata:
 spec:
   resources:
      - name: git-source
-        resource: git
+       type: git
   params:
     - name: pathToContext
       description: The path to the build context, used by Kaniko - within the workspace
