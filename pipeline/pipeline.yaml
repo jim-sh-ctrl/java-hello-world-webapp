@@ -4,11 +4,7 @@ metadata:
   name: application-pipeline
 spec:
   resources:
-      inputs:
-      - name: git-source
-        resource: git
-      outputs:
-      - name: git-source
+     - name: git-source
         resource: git
   params:
     - name: pathToContext
